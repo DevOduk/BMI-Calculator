@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <title>BMI Calculator | Austine Oduk | Website Developer</title>
+</head>
+<style>
+    ::selection {
+        color: #00ff08;
+        background-color: rgb(0, 0, 0);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        color: white;
+        scroll-behavior: smooth;
+        transition: all 0.3s ease;
+    }
+    .maincont {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        max-width: 1600px;
+        margin: 20px auto;
+    }
+    body{
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.855), transparent), url("Measuring-tape-and-BMI-word-in-wooden-block.webp");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    .cont {
+        width: 500px;
+        background-color: rgba(0, 0, 0, 0.274);
+        padding: 20px;
+        border-radius: 20px;
+        margin: 0px;
+        min-width: 500px;
+        height: fit-content;
+        position: relative;
+        top: 0%;
+        backdrop-filter: blur(4px);
+    }
+    .description {        
+        line-height: 2.3;
+        width: 100%;
+        padding: 40px 30px;
+        max-width: 1000px;
+        background-color: rgba(0, 0, 0, 0.274);
+
+    }
+    .cont button {
+        width: 100%;
+        background-color: rgba(222, 174, 0, 0.551);
+        padding: 10px 0;
+        border-radius: 5px;
+        margin: 30px 0;
+        color: white;
+    }
+    .cont input{
+        width: 100%;
+        background-color: transparent;
+        color: rgb(255, 255, 255);
+        padding: 10px 50px 10px 20px;
+        border-radius: 5px;
+        margin: 15px 0;
+        outline: none;
+        border: 1px solid rgb(255, 174, 0);
+
+    }
+    ul {
+        padding-left: 50px;
+    }
+    input::-webkit-input-placeholder{
+        color: rgba(255, 255, 255, 0.851);
+
+    }
+    h1, h2 {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .cont input:active, input:focus{
+        border: 1px solid rgb(21, 255, 0);
+    }
+    .cont div {
+        position: relative;
+    }
+    .cont div b {
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translateX(-50%);
+    }
+    #bmivalue {
+        padding: 5px 20px;
+        border-bottom: 2px solid rgb(255, 47, 47);
+        color:  rgb(222, 174, 0);
+    }
+    .imgcontainer img {
+        width: 100%;
+        height: auto;
+    }
+    .Rangeforage {
+        padding: 5px;
+        background-color: rgba(148, 127, 255, 0.265);
+        line-height: 2;
+        text-align: center;
+        margin: 12px 0;
+    }
+
+
+
+
+    footer {
+        background-color: rgb(66, 66, 66);
+        padding: 20px 0;
+        line-height: 2;
+        color: white;
+        padding-top: 90px;
+        background-color: #083a4e;
+        position: relative;
+    }
+    
+    footer a:hover {
+        text-decoration: #00ff08;
+    }
+    footer section {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+    footer ul {
+        gap: 5px; 
+        display: flex; 
+        flex-direction: column; 
+        font-family: sans-serif;
+        text-align: left;
+        margin: 10px 0;
+        padding-left: 20px;
+        text-align: center;
+        padding-left: 40px;
+    }
+    footer a {
+        width: 100%;
+        text-align: left;
+        transform: none;
+        text-decoration: none;
+        color: #7bccff;
+    }
+    footer a li {
+        color: #7bccff;
+    }
+    footer a:hover, li:hover {
+        color: #00ff08;
+    }
+    
+    .NavigationP {
+        display: flex;
+        flex-direction: row;
+        max-width: 1300px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        justify-content: space-around;
+    }
+    .NavigationP iframe{
+        width: 600px;
+        min-height: 400px;
+    }
+    footer .NavigationP div {
+        margin: 0 10px;
+        text-align: left;
+    }
+    .socials {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        justify-content: center;
+        text-align: center;
+        height: 40px;
+        align-items: center;
+        background-color:transparent;
+        height: 45px;
+        padding: 0 20px;
+        color: #7bccff;
+        font-family: sans-serif;
+        font-size: 15px;
+        outline: none;
+        border: 1px solid rgb(0, 255, 38);
+        cursor: pointer;
+        position: relative;
+        width: 230px;
+        gap: 20px;
+        transform: none;
+        margin: 5px 0;
+        transition: .4s ease;
+    }
+    .socials button:hover i{
+        opacity: 1;
+        transition: .4s ease;
+        position: relative;
+        
+    }
+    .socials button:hover {
+        background-color: rgba(0, 255, 38, 0);
+        color: rgb(0, 255, 38);
+        transform: none !important;
+        transition: .4s ease;
+        border: 1px solid white;
+        text-decoration: none;
+        justify-content: space-around;
+    }
+    .socials a:hover {
+        text-decoration: none !important;
+        transition: .4s ease;
+        transform: none;
+    }
+    
+    .Based i{
+        padding-right: 10px;
+    }
+    .Based ul {
+        list-style: none;
+        padding-left: 0px;
+    }
+#interpretation {
+    text-align: center;
+    padding: 10px;
+}
+.lowerBMI h3 {
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+.homebanner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-image: url("banner.jpeg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.611);
+    nav {
+        position: absolute;
+        top: 0%;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 30px;
+        a{
+            color: #7bccff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #00ff08;
+        }
+    }
+    nav span:first-child {
+        color: #00ff08;
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 4px;
+        pointer-events: none !important;
+    }
+}
+.bannerbtn {
+    padding: 12px 40px;
+    border: none;
+    outline: none;
+    background-color: #0bb011;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.bannerbtn:hover {
+    background-color: #009005;
+}
+.top {
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    top: -30px;
+    right: 50% !important;
+    background-color: #000000;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    padding: 7px;
+    transform: rotate(180deg) translateX(-50%) !important;
+}
+@media (max-width: 1100px) {
+    .maincont {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cont {
+        width: 90%;
+    }
+}
+</style>
+<body>
+    <div class="homebanner">
+        <nav>
+            <span>
+                <img src="Logocoder.png" alt="Logo" style="height: 50px;">
+            </span>
+            <span>
+                <a href="https://www.austineoduk.online/">
+                    My Portfolio
+                </a>
+                <button class="bannerbtn" onclick="window.open('https://www.austineoduk.online/')">More Projects</button>
+            </span>
+        </nav>
+        <h1 style="font-size: 2.5rem; color:  rgb(255, 255, 255); text-align: center; margin: 20px 0;">BMI(Body Mass Index)</h1>
+        <h2>What is BMI?</h2>
+    </div>
+    
+      <div class="maincont">
+        <div class="cont">
+            <form onsubmit="calculate(event)">
+                <h1>BMI Calculator</h1>
+            <div>
+                Weight:
+                <input type="text" id="weight" value="60" placeholder="Enter Weight" required>
+                <b>Kg</b>
+            </div>
+            <div>
+                Age:
+                <input type="text" id="age" value="20" placeholder="Enter Age">
+                <b>Yr</b>
+            </div>
+            <div>
+                Height:
+                <input type="text" id="height" value="175" placeholder="Enter Height">
+                <b>Cm</b>
+            </div>
+            <button type="submit" id="calcBtn" class="btn">Calculate</button>
+            </form>
+            <h1 style="text-align: center;">BMI = <span id="bmivalue">?</span></h1>
+            <h2 id="interpretation">
+            </h2>
+            <div class="Rangeforage">
+                Age = (<span id="agecontent">?</span>)<br>
+                Normal Range for your age:<br>
+                <div id="ranges">?</div>
+            </div>
+            <div class="imgcontainer">
+            </div>
+        </div>
+        <div class="description">
+            <h1>What is the Body Mass Index (BMI)?</h1> 
+        <p>
+            The Body Mass Index (BMI) is a metric used to assess whether an individual's weight is within a healthy range, and it is determined by considering their height and weight.
+            BMI is a measurement of a person's leanness or corpulence based on their height and weight, and is intended to quantify tissue mass. It is widely used as a general indicator of whether a person has a healthy body weight for their height. <br>
+            Specifically, the value obtained from the calculation of BMI is used to categorize whether a person is underweight, normal weight, overweight, or obese depending on what range the value falls between. <br>
+            These ranges of BMI vary based on factors such as region and age, and are sometimes further divided into subcategories such as severely underweight or very severely obese. <br>
+            Being overweight or underweight can have significant health effects, so while BMI is an imperfect measure of healthy body weight, it is a useful indicator of whether any additional testing or action is required. Refer to the table below to see the different categories based on BMI that are used by the calculator.
+        </p>
+        <p>
+            To calculate BMI for adults, the formula involves dividing the person's weight in kilograms by the square of their height in meters. For instance, a BMI of 25 translates to 25kg/m².
+        </p>
+        <h2> BMI Categories: </h2>
+        <p>
+            For most adults, an optimal BMI falls in the range of 18.5 to 24.9, indicating a healthy weight.
+        </p>
+        <p>
+            <b>N/B:</b> When assessing children and adolescents aged 2 to 18, the BMI calculation factors in age and gender in addition to height and weight.
+        </p>
+        <div>
+            <h3> BMI interpretations are as follows:</h3>
+             <ul>
+                <li>Below 18.5: Classified as underweight.</li>
+                <li>Between 18.5 and 24.9: Considered to be in the healthy weight range.</li>
+                <li>Between 25 and 29.9: Falls into the overweight range.</li>
+                <li>30 or over: Characterized as obese. </li>
+             </ul>
+        </div>
+        
+        <p>
+            If you wish to determine your BMI, you can utilize a healthy weight calculator.
+        </p>
+        <h2>BMI Accuracy:</h2>
+        <p>
+            BMI takes into consideration natural variations in body shape, providing a suitable weight range based on a person's height. Healthcare professionals may also consider other factors when assessing a person's healthy weight.
+        </p>
+        <p>
+            It's important to note that muscle is denser than fat. Consequently, individuals with high muscle mass, such as heavyweight boxers, weightlifters, and athletes, may have a BMI categorized as obese, even though they are healthy in terms of weight.
+        </p>
+        <p>
+            Moreover, one's ethnic background can influence their risk of certain health conditions. For instance, adults of South Asian descent may face an elevated risk of certain health issues, like diabetes, even with a BMI of 23, which is typically regarded as healthy.
+        </p>
+        <p>
+            If you are pregnant, BMI should not be used as a measurement. If you have concerns about your weight during pregnancy, it's advisable to seek guidance from your midwife or general practitioner.
+        </p>
+        <img src="body-mass-index-bmi-chart-mens.jpg" style="width: 100%; margin: 20px 0;" alt="">
+
+        <div class="lowerBMI">
+           <h2>How To Lower BMI </h2>
+
+                There are a number of ways to lower your BMI, though they may not be exactly what you want “to do” in one session. We’ll talk about some of the most effective options that doctors suggest below.<br>
+                
+                <h3>1. Reduce your calorie intake to prevent gaining weight</h3>
+                
+                This is the most basic strategy for lowering your BMI level. You are likely already doing this if you have been trying to lose weight for some time now and haven’t seen much progress. By following a calorie deficit diet or intermittent fasting, you can help reduce your overall body fat levels and thus, lower your BMI level. Even small changes can add up over the long run, as long as you’re consistent.<br>
+                
+                <h3>2. Exercise </h3>
+                
+                Exercise generally boosts your metabolism, which in turn, burns calories and causes weight loss. It also improves your mood, decreases stress levels, and helps you sleep better at night. You don’t need to exercise until you’re sweating and tired, however: a 30-minute walk every day is a great habit that will improve your health.<br>
+                
+                <h3>3. Enhance your diet </h3>
+                
+                Switch to a diet with less junk and fast food, and plenty of whole foods, fruits and vegetables. Whole plant-based foods have fiber, vitamins and minerals that increase satiety and help you lose weight. Increase your intake of lean protein food sources like beans (other than soy), lentils, quinoa, chickpeas, or tofu to build muscle and lose fat faster. Also make sure you’re getting enough vitamin D from sunlight or from food sources such as fortified non-dairy alternatives like cereals and juices.<br>
+                
+                <h3>4. Drink more water</h3> 
+                
+                Dehydration can lead to a number of health issues, such as headaches and constipation. Drinking more water can help you lose weight, boost digestion, improve skin clarity and prevent kidney stones from developing. It’s a good idea to consume 8 – 10 glasses of water each day for general health benefits. Drinking cold and room temperature water can also help keep you feeling full, which will prevent you from overeating in the long run.<br>
+                
+                <h3>5. Get enough sleep</h3> 
+                
+                Sleep is essential for our body to be strong and healthy. It has pronounced benefits on your cognition, mood and overall stress levels, too. Lack of sleep may lead to weight gain or even obesity because we tend to eat more during the night. Sleep also reduces your cortisol levels, as high cortisol in the blood can lead to insulin resistance and long-term weight gain.<br><br>
+                
+                Make sure to get 8 hours of sleep every night, and practice good sleep hygiene. Stop using phones and electronics about an hour before bed, sleep in comfortable clothing, in a cool, dark bedroom.<br>
+        </div>
+        </div>
+      </div>
+
+      
+      <footer style="text-align: center; display: flex; flex-direction: column; gap: 10px;">
+        <div class="top" onclick="window.scrollTo(0, 0)">
+          <svg width="37" height="39" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.29289 8.70711C9.68342 9.09763 10.3166 9.09763 10.7071 8.70711L17.0711 2.34315C17.4616 1.95263 17.4616 1.31946 17.0711 0.928937C16.6805 0.538413 16.0474 0.538412 15.6569 0.928936L10 6.58579L4.34315 0.928928C3.95263 0.538404 3.31946 0.538403 2.92894 0.928927C2.53841 1.31945 2.53841 1.95262 2.92894 2.34314L9.29289 8.70711ZM9 7L9 8L11 8L11 7L9 7Z" fill="white"/>
+          <path d="M9.29289 20.7071C9.68342 21.0976 10.3166 21.0976 10.7071 20.7071L17.0711 14.3432C17.4616 13.9526 17.4616 13.3195 17.0711 12.9289C16.6805 12.5384 16.0474 12.5384 15.6569 12.9289L10 18.5858L4.34315 12.9289C3.95263 12.5384 3.31946 12.5384 2.92894 12.9289C2.53841 13.3195 2.53841 13.9526 2.92894 14.3431L9.29289 20.7071ZM9 19L9 20L11 20L11 19L9 19Z" fill="white"/>
+          <path d="M9.29289 14.7071C9.68342 15.0976 10.3166 15.0976 10.7071 14.7071L17.0711 8.34315C17.4616 7.95263 17.4616 7.31946 17.0711 6.92894C16.6805 6.53841 16.0474 6.53841 15.6569 6.92894L10 12.5858L4.34315 6.92893C3.95263 6.5384 3.31946 6.5384 2.92894 6.92893C2.53841 7.31945 2.53841 7.95262 2.92894 8.34314L9.29289 14.7071ZM9 13L9 14L11 14L11 13L9 13Z" fill="white"/>
+          </svg>
+        </div>
+        <div class='' style="display: flex; justify-content: center; gap: 20px; width: fit-content; margin: 0 auto;">
+              <a href='https://www.instagram.com/oduk_sr/'><i class="fa-brands fa-instagram"></i></a>
+              <a href='https://www.facebook.com/profile.php?id=100069487444055'><i class="fa-brands fa-facebook-f"></i></a>
+              <a href='https://www.youtube.com/channel/UCPrYwmoy9wVGNwg-dmyCNRQ'><i class="fa-brands fa-youtube"></i></a>
+              <a href='https://open.spotify.com/user/31uk62sl7qzzfdry74zbulgvumri'><i class="fa-brands fa-spotify"></i></a>
+              <a href='https://www.blogger.com/blog/posts/205945650435362831?bpli=1&pli=1'><i class="fa-solid fa-blog"></i></a>
+        </div>
+        <p>Copyright ©2025 All Rights Reserved | Designed & Developed by Dev Oduk <a href='https://github.com/DevOduk'>View Profile</a></p>
+      </footer>
+<script>
+
+    var imgcontainer = document.getElementsByclass("imgcontainer")[0];
+
+    function calculate(event) {
+        // This function is called when the form is submitted
+        // It prevents the default form submission behavior
+        event.preventDefault();
+
+    var age = parseFloat(document.getElementById("age").value);
+    
+    var bmiRangeContent = document.getElementById("ranges");
+
+    if (age >= 1.5 && age <= 18) {
+        bmiRangeContent.textContent = "("+"17 - 23"+")";
+        appendChildChildren(); // You can define the appendChildChildren function to append the content as needed.
+    } else if (age > 18 && age <= 80) {
+        bmiRangeContent.textContent = "("+"18 - 25"+")";
+    } else {
+        bmiRangeContent.textContent = "Please try again!";
+        appendChildFindingRangeForAge(); // You can define the appendChildFindingRangeForAge function to append the content as needed.
+    }
+    document.getElementById("agecontent").textContent = age + " Years Old";
+
+        var weight = parseFloat(document.getElementById("weight").value);
+        var height = parseFloat(document.getElementById("height").value);
+    
+
+
+        if (!isNaN(weight) && !isNaN(height) && weight !== 0 && height !== 0) {
+            var bmi = weight / ((height / 100) * (height / 100));
+            var bmicontent = document.getElementById("bmivalue");
+            bmi.length = 4;
+            bmicontent.textContent = bmi.toString().slice(0, 5);
+
+
+            var interpretation = document.getElementById("interpretation");
+            interpretation.textContent = "Moderate Thinness";
+                if (bmi > 18.5 && bmi < 25) {
+                    interpretation.textContent = "Normal Bmi";
+                    bmicontent.style.color = "rgb(0, 255, 0)";
+                    interpretation.style.color = "rgb(0, 255, 0)";
+                } else {} if(bmi > 15 && bmi < 18.5) {
+                    interpretation.textContent = "Moderate Thinness";
+                    bmicontent.style.color = "orange";
+                    interpretation.style.color = "orange";
+                } else {} if(bmi > 25 && bmi < 30) {
+                    interpretation.textContent = "Overweight";
+                    bmicontent.style.color = "orange";
+                    interpretation.style.color = "orange";
+                } else {} if(bmi < 15) {
+                    interpretation.textContent = "Severe Thinness (Underweight)";
+                    bmicontent.style.color = "red";
+                    interpretation.style.color = "red";
+                } else {} if(bmi > 30) {
+                    interpretation.textContent = "Obesse";
+                    bmicontent.style.color = "red";
+                    interpretation.style.color = "red";
+                }
+    
+            // Add the image
+            var img = document.createElement("img");
+            img.setAttribute("src", "body-1296x1184-bmi-3-1024x924.webp");
+            img.setAttribute("alt", "body-1296x1184-bmi-3-1024x924 image");
+    
+            imgcontainer.innerHTML = ''; // Clear any existing content
+            imgcontainer.appendChild(img);
+        } else {
+            // Remove the image (if it was added before)
+            imgcontainer.innerHTML = '';
+    
+            // Show an alert message
+            alert("Ther was an error calculating your BMI. Please try again!");
+        }
+    }
+    
+</script>
+</body>
